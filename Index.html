@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -157,8 +158,10 @@
 
 <script>
   function validarLogin() {
-    const usuario = document.getElementById('usuario').value.trim
-        if (!usuario.includes('@') && isNaN(usuario)) {
+    const usuario = document.getElementById('usuario').value.trim();
+    const clave = document.getElementById('clave').value.trim();
+
+    if (!usuario.includes('@') && isNaN(usuario)) {
       alert('Ingresa un correo válido o número de celular.');
       return false;
 }
