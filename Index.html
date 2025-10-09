@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -77,6 +76,11 @@
       margin-top: 0;
       color: #1877f2;
 }
+.imagen-grande {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 20px;
+}
   </style>
 </head>
 <body>
@@ -118,34 +122,32 @@
     <p>Has iniciado sesión correctamente.</p>
   </div>
   <div class="seccion" id="perfil">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="imagen-grande {width: 600%;max-width800px;
-    border-radius: 10000px;;">
-    
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
     <p>jajajs</p>
   </div>
   <div class="seccion" id="noticias">
     <h2>Q FUEE MANO</h2>
-   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
   </div>
   <div class="seccion" id="mensajes">
     <h2>chismosa</h2>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
   </div>
   <div class="seccion" id="amigos">
-    <h2>Q .....</h2>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+    <h2>Q.....</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
   </div>
   <div class="seccion" id="notificaciones">
     <h2>Q PASO VIEJO</h2>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
   </div>
   <div class="seccion" id="configuracion">
     <h2>Q PADO VIEJO</h2>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" style="max-width:100%; border-radius:10px;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
   </div>
   <nav>
     <button onclick="mostrarSeccion('perfil')">Perfil</button>
-     <button onclick="mostrarSeccion('noticias')">Noticias</button>
+    <button onclick="mostrarSeccion('noticias')">Noticias</button>
     <button onclick="mostrarSeccion('mensajes')">Mensajes</button>
     <button onclick="mostrarSeccion('amigos')">Amigos</button>
     <button onclick="mostrarSeccion('notificaciones')">Notificaciones</button>
@@ -155,10 +157,8 @@
 
 <script>
   function validarLogin() {
-    const usuario = document.getElementById('usuario').value.trim();
-    const clave = document.getElementById('clave').value.trim();
-
-    if (!usuario.includes('@') && isNaN(usuario)) {
+    const usuario = document.getElementById('usuario').value.trim
+        if (!usuario.includes('@') && isNaN(usuario)) {
       alert('Ingresa un correo válido o número de celular.');
       return false;
 }
