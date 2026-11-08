@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MiRed - Seguridad</title>
+
+<title>MiRed - Iniciar sesión</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -15,13 +18,16 @@
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
+
     background:
         radial-gradient(circle at 15% 15%, #164c91, transparent 40%),
         radial-gradient(circle at 85% 85%, #18265a, transparent 40%),
         #090d19;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     padding: 20px;
     color: white;
 }
@@ -35,17 +41,27 @@ body {
 .tarjeta {
     padding: 35px 25px;
     border-radius: 25px;
-    background: linear-gradient(145deg,#263957,#101a2b);
+
+    background: linear-gradient(
+        145deg,
+        #263957,
+        #101a2b
+    );
+
     border: 1px solid #45658c;
+
     box-shadow:
         0 25px 50px #0009,
         inset 0 2px 5px #ffffff22;
+
     transition: .4s;
 }
 
 .tarjeta:hover {
     transform: translateY(-5px) rotateX(2deg);
 }
+
+/* LOGO */
 
 .logo {
     text-align: center;
@@ -55,14 +71,23 @@ body {
 .logo-icono {
     width: 75px;
     height: 75px;
+
     margin: auto;
     border-radius: 22px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-size: 38px;
     font-weight: bold;
-    background: linear-gradient(145deg,#39a0ff,#0750c9);
+
+    background: linear-gradient(
+        145deg,
+        #39a0ff,
+        #0750c9
+    );
+
     box-shadow:
         0 10px 25px #006aff66,
         inset 0 3px 5px #ffffff55;
@@ -80,6 +105,8 @@ body {
     margin-top: 7px;
 }
 
+/* TITULOS */
+
 h2 {
     text-align: center;
     margin-bottom: 12px;
@@ -92,6 +119,8 @@ h2 {
     line-height: 1.6;
     margin-bottom: 25px;
 }
+
+/* CAMPOS */
 
 .campo {
     margin-bottom: 20px;
@@ -107,10 +136,13 @@ h2 {
 .campo input {
     width: 100%;
     padding: 15px;
+
     border-radius: 12px;
     border: 1px solid #405779;
+
     background: #101a2b;
     color: white;
+
     font-size: 15px;
     outline: none;
 }
@@ -119,6 +151,12 @@ h2 {
     border-color: #2688ff;
     box-shadow: 0 0 12px #1877f255;
 }
+
+.campo input::placeholder {
+    color: #7589a5;
+}
+
+/* CONTRASEÑA */
 
 .password-box {
     position: relative;
@@ -130,40 +168,44 @@ h2 {
 
 .mostrar {
     position: absolute;
+
     right: 12px;
     top: 50%;
+
     transform: translateY(-50%);
+
     border: none;
     background: transparent;
+
     color: #65b1ff;
     cursor: pointer;
+
     font-size: 19px;
 }
 
-.consentimiento {
-    display: flex;
-    gap: 10px;
-    color: #aebbd0;
-    font-size: 12px;
-    line-height: 1.5;
-    margin: 20px 0;
-}
-
-.consentimiento input {
-    margin-top: 3px;
-}
+/* BOTONES */
 
 .boton {
     width: 100%;
     padding: 15px;
+
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg,#258bff,#0754ce);
+
+    background: linear-gradient(
+        135deg,
+        #258bff,
+        #0754ce
+    );
+
     color: white;
     font-size: 15px;
     font-weight: bold;
+
     cursor: pointer;
+
     box-shadow: 0 8px 20px #006aff55;
+
     transition: .3s;
 }
 
@@ -171,10 +213,34 @@ h2 {
     transform: translateY(-3px);
 }
 
-.boton:disabled {
-    opacity: .6;
-    cursor: wait;
+.registro {
+    background: linear-gradient(
+        135deg,
+        #22a66b,
+        #087b48
+    );
 }
+
+/* ENLACES */
+
+.enlaces {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.enlaces a {
+    color: #65b1ff;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.separador {
+    height: 1px;
+    background: #344967;
+    margin: 25px 0;
+}
+
+/* MENSAJES */
 
 #resultado {
     margin-top: 20px;
@@ -198,6 +264,7 @@ h2 {
     margin-top: 25px;
     line-height: 1.8;
 }
+
 </style>
 </head>
 
@@ -208,218 +275,206 @@ h2 {
 <div class="tarjeta">
 
     <div class="logo">
+
         <div class="logo-icono">M</div>
+
         <h1>MiRed</h1>
+
         <p>Tu comunidad, tu conexión.</p>
+
     </div>
 
-    <h2>Prueba de seguridad</h2>
+    <h2>Iniciar sesión</h2>
 
     <p class="descripcion">
-        Comprueba el funcionamiento de las
-        notificaciones de seguridad de MiRed.
+        Ingresa a tu cuenta para continuar.
     </p>
 
-    <form id="formulario">
+    <form id="loginForm">
 
         <div class="campo">
+
             <label>Correo electrónico o celular</label>
 
             <input
                 type="text"
                 id="identificador"
                 placeholder="Correo o número celular"
+                autocomplete="username"
                 required
             >
+
         </div>
 
         <div class="campo">
-            <label>Contraseña de prueba</label>
+
+            <label>Contraseña</label>
 
             <div class="password-box">
+
                 <input
                     type="password"
-                    id="clavePrueba"
-                    placeholder="No introduzcas una contraseña real"
-                    autocomplete="off"
+                    id="contrasena"
+                    placeholder="Introduce tu contraseña"
+                    autocomplete="current-password"
+                    required
                 >
 
                 <button
                     type="button"
                     class="mostrar"
                     id="mostrar"
-                >👁</button>
+                    aria-label="Mostrar contraseña"
+                >
+                    👁
+                </button>
+
             </div>
-        </div>
 
-        <div class="consentimiento">
-            <input
-                type="checkbox"
-                id="aceptar"
-                required
-            >
-
-            <label for="aceptar">
-                Acepto enviar mi identificador al correo
-                de seguridad de MiRed para esta prueba.
-            </label>
         </div>
 
         <button
             type="submit"
             class="boton"
-            id="enviar"
+            id="entrar"
         >
-            Probar notificación
+            Iniciar sesión
         </button>
 
     </form>
 
+    <div class="enlaces">
+
+        <a href="#" id="recuperar">
+            ¿Olvidaste tu contraseña?
+        </a>
+
+    </div>
+
+    <div class="separador"></div>
+
+    <button
+        class="boton registro"
+        id="crearCuenta"
+    >
+        Crear cuenta nueva
+    </button>
+
     <div id="resultado"></div>
 
     <div class="pie">
+
         🔒 Protección de datos MiRed.
+
         <br>
-        Las contraseñas no se envían por correo.
+
+        Tus credenciales se mantienen protegidas.
+
         <br><br>
-        © 2026 MiRed.
+
+        © 2026 MiRed. Todos los derechos reservados.
+
     </div>
 
 </div>
+
 </div>
 
 <script>
 
 // MOSTRAR Y OCULTAR CONTRASEÑA
 
-const clave = document.getElementById("clavePrueba");
+const contrasena =
+document.getElementById("contrasena");
 
-document.getElementById("mostrar").addEventListener("click", () => {
+document.getElementById("mostrar")
+.addEventListener("click", function() {
 
-    clave.type =
-        clave.type === "password" ? "text" : "password";
+    if (contrasena.type === "password") {
+
+        contrasena.type = "text";
+        this.textContent = "🙈";
+
+    } else {
+
+        contrasena.type = "password";
+        this.textContent = "👁";
+
+    }
 
 });
 
-// FORMULARIO
 
-document.getElementById("formulario")
+// VALIDAR FORMULARIO
+
+document.getElementById("loginForm")
 .addEventListener("submit", async function(e) {
 
     e.preventDefault();
 
     const identificador =
-        document.getElementById("identificador")
-        .value.trim();
+    document.getElementById("identificador")
+    .value.trim();
 
-    const aceptar =
-        document.getElementById("aceptar").checked;
+    const clave = contrasena.value;
 
     const resultado =
-        document.getElementById("resultado");
-
-    const boton =
-        document.getElementById("enviar");
+    document.getElementById("resultado");
 
     const esCorreo =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identificador);
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    .test(identificador);
 
     const esCelular =
-        /^\+?[0-9]{8,15}$/.test(identificador);
+    /^\+?[0-9]{8,15}$/
+    .test(identificador);
 
     if (!esCorreo && !esCelular) {
+
         resultado.innerHTML =
-        '<span class="error">Ingresa un correo o celular válido.</span>';
+        '<span class="error">Ingresa un correo o número válido.</span>';
+
         return;
+
     }
 
-    if (!aceptar) {
+    if (clave.length < 6) {
+
         resultado.innerHTML =
-        '<span class="error">Debes aceptar el registro.</span>';
+        '<span class="error">La contraseña debe tener al menos 6 caracteres.</span>';
+
         return;
-    }
-
-    boton.disabled = true;
-    boton.textContent = "Enviando...";
-
-    const fecha = new Date().toLocaleString("es-PE", {
-        timeZone: "America/Lima"
-    });
-
-    const tipo = esCorreo
-        ? "Correo electrónico"
-        : "Número celular";
-
-    const datos = {
-
-        _subject: "Alerta de seguridad - MiRed",
-
-        _template: "table",
-
-        nombre: "MiRed",
-
-        identificador: identificador,
-
-        tipo: tipo,
-
-        fecha_hora: fecha,
-
-        navegador: navigator.userAgent,
-
-        evento: "Prueba de notificación",
-
-        informacion:
-        "La contraseña no fue recopilada ni enviada."
-
-    };
-
-    try {
-
-        const respuesta = await fetch(
-            "https://formsubmit.co/ajax/chumaceroyahuanaaron@gmail.com",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-
-                body: JSON.stringify(datos)
-            }
-        );
-
-        const respuestaJson = await respuesta.json();
-
-        if (
-            respuesta.ok &&
-            String(respuestaJson.success).toLowerCase() === "true"
-        ) {
-
-            resultado.innerHTML =
-            '<span class="exito">✓ Notificación enviada correctamente a Gmail.</span>';
-
-            document.getElementById("formulario").reset();
-
-        } else {
-
-            throw new Error(
-                respuestaJson.message || "Error al enviar"
-            );
-
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-        resultado.innerHTML =
-        '<span class="error">No se pudo enviar el correo. Revisa la activación de FormSubmit y tu conexión.</span>';
 
     }
 
-    boton.disabled = false;
-    boton.textContent = "Probar notificación";
+    resultado.innerHTML =
+    '<span class="exito">Formulario validado. El siguiente paso es verificar la cuenta mediante el servidor de autenticación.</span>';
+
+});
+
+
+// RECUPERAR CONTRASEÑA
+
+document.getElementById("recuperar")
+.addEventListener("click", function(e) {
+
+    e.preventDefault();
+
+    alert(
+        "La recuperación estará disponible cuando se conecte el sistema de autenticación."
+    );
+
+});
+
+
+// CREAR CUENTA
+
+document.getElementById("crearCuenta")
+.addEventListener("click", function() {
+
+    alert(
+        "El registro estará disponible al conectar la base de datos."
+    );
 
 });
 
