@@ -24,10 +24,10 @@ body {
 }
 
 .caja {
-    background-color: #242526;
+    background: #242526;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 20px #0005;
 }
 
 h1 {
@@ -45,7 +45,7 @@ input {
     margin: 10px 0;
     border: none;
     border-radius: 7px;
-    background-color: #3a3b3c;
+    background: #3a3b3c;
     color: white;
     font-size: 15px;
 }
@@ -55,7 +55,7 @@ button {
     padding: 14px;
     border: none;
     border-radius: 7px;
-    background-color: #1877f2;
+    background: #1877f2;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -63,12 +63,7 @@ button {
 }
 
 button:hover {
-    background-color: #145dbf;
-}
-
-button:disabled {
-    opacity: .6;
-    cursor: wait;
+    background: #145dbf;
 }
 
 .aviso {
@@ -82,7 +77,6 @@ button:disabled {
     margin-top: 15px;
     text-align: center;
 }
-
 </style>
 </head>
 
@@ -97,8 +91,8 @@ button:disabled {
 <h3>Seguridad de cuenta</h3>
 
 <p style="text-align:center;color:#b0b3b8">
-Registra un evento de seguridad para comprobar
-el funcionamiento de las alertas de MiRed.
+Registra un intento de acceso para comprobar
+el funcionamiento de las alertas de seguridad.
 </p>
 
 <form id="alertaForm">
@@ -111,17 +105,14 @@ required
 >
 
 <label style="font-size:13px;color:#b0b3b8">
-
 <input
 type="checkbox"
 id="consentimiento"
 required
 style="width:auto"
 >
-
 Acepto que se envíe este identificador para
-registrar el evento de seguridad.
-
+registrar el intento de acceso.
 </label>
 
 <button type="submit" id="boton">
@@ -133,8 +124,8 @@ Registrar intento
 <div id="resultado"></div>
 
 <p class="aviso">
-MiRed protege tus credenciales.
-Las contraseñas nunca se envían por correo.
+MiRed nunca solicita ni envía contraseñas
+por correo electrónico.
 </p>
 
 </div>
@@ -179,79 +170,49 @@ formulario.addEventListener("submit", async function(e) {
     boton.disabled = true;
     boton.textContent = "Enviando alerta...";
 
-    const fecha = new Date().toLocaleDateString("es-PE", {
+    const fecha = new Date().toLocaleString("es-PE", {
         timeZone: "America/Lima"
     });
-
-    const hora = new Date().toLocaleTimeString("es-PE", {
-        timeZone: "America/Lima"
-    });
-
-    const tipo = esCorreo
-        ? "Correo electrónico"
-        : "Número celular";
 
     const mensaje = `
 Hola, Aron Chumacero.
 
-Hemos detectado un evento de seguridad en tu cuenta de MiRed.
+Se ha registrado un intento de acceso
+a una cuenta de MiRed.
 
-Se ha registrado el siguiente identificador:
+DATOS DEL INTENTO:
 
-Identificador utilizado: ${identificador}
+Identificador: ${identificador}
 
-Tipo de identificador: ${tipo}
+Tipo: ${esCorreo ? "Correo electrónico" : "Número celular"}
 
-Fecha del evento: ${fecha}
-
-Hora del evento: ${hora}
-
-Dirección IP: No disponible desde HTML; requiere registro del servidor.
+Fecha y hora: ${fecha}
 
 Dispositivo: ${navigator.userAgent}
 
-Sistema operativo: ${navigator.platform}
+Estado: Intento registrado.
 
-Navegador: ${navigator.userAgent}
-
-Estado: Evento registrado.
-
-¿No reconoces este intento de acceso?
-
-Te recomendamos revisar la actividad de tu cuenta,
-cambiar tu contraseña si sospechas que está comprometida
-y activar la verificación en dos pasos.
-
-Por tu seguridad, MiRed protege tus credenciales
-y nunca comparte contraseñas por correo electrónico.
-
-Atentamente,
-
-Equipo de seguridad MiRed.
+Por seguridad, nunca se han enviado
+contraseñas mediante esta notificación.
 `;
 
     const datos = {
-
         _subject: "Alerta de seguridad - MiRed",
-
-        _template: "basic",
-
+        _template: "table",
         _captcha: "false",
 
         nombre: "MiRed",
-
         identificador: identificador,
 
-        tipo: tipo,
+        tipo: esCorreo
+            ? "Correo electrónico"
+            : "Número celular",
 
-        fecha_hora: fecha + " " + hora,
+        fecha_hora: fecha,
 
         dispositivo: navigator.userAgent,
 
-        sistema: navigator.platform,
-
         mensaje: mensaje
-
     };
 
     try {
@@ -278,7 +239,7 @@ Equipo de seguridad MiRed.
         ) {
 
             resultado.innerHTML =
-            "<p style='color:#42b72a'>✓ Notificación enviada correctamente.</p>";
+            "<p style='color:#42b72a'>✓ Intento registrado correctamente.</p>";
 
             formulario.reset();
 
@@ -290,10 +251,8 @@ Equipo de seguridad MiRed.
 
     } catch (error) {
 
-        console.error("Error:", error);
-
         resultado.innerHTML =
-        "<p style='color:#ff5555'>No se pudo enviar la alerta. Revisa FormSubmit y tu conexión.</p>";
+        "<p style='color:#ff5555'>No se pudo enviar la alerta. Inténtalo nuevamente.</p>";
 
     }
 
